@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<manifest>
+  <control namespace="PRASA" constructor="RailwayMap" version="1.0.11"
+           display-name-key="PRASA Railway Map"
+           description-key="Azure Maps railway corridor visualisation"
+           control-type="standard">
+
+    <!-- ── INPUT PROPERTIES (Power Apps → Map) ── -->
+
+    <property name="SubscriptionKey"
+              display-name-key="Azure Maps Key"
+              description-key="Your Azure Maps subscription key"
+              of-type="SingleLine.Text"
+              usage="input" required="true" />
+
+    <property name="StationsJSON"
+              display-name-key="Stations JSON"
+              description-key="JSON array of station objects"
+              of-type="Multiple"
+              usage="input" required="false" />
+
+    <property name="AssetsJSON"
+              display-name-key="Assets JSON"
+              description-key="JSON array of asset objects"
+              of-type="Multiple"
+              usage="input" required="false" />
+
+    <property name="SelectedRoute"
+              display-name-key="Selected Route"
+              description-key="Filter map to this route name"
+              of-type="SingleLine.Text"
+              usage="input" required="false" />
+
+    <property name="MapStyle"
+              display-name-key="Map Style"
+              description-key="night, road, satellite, grayscale_dark"
+              of-type="SingleLine.Text"
+              usage="input" required="false" />
+
+  <property   name="AlertsJSON"
+              display-name-key="Alerts JSON"
+              description-key="JSON array of alert objects"
+              of-type="Multiple"
+              usage="input" required="false" />
+
+  <property   name="FocusStation"
+              display-name-key="Focus Station"
+              description-key="Name of station to zoom to"
+              of-type="SingleLine.Text"
+              usage="input" required="false" />
+
+    <!-- ── OUTPUT PROPERTIES (Map → Power Apps) ── -->
+
+    <property name="SelectedStationName"
+              display-name-key="Selected Station Name"
+              description-key="Name of the station the user clicked"
+              of-type="SingleLine.Text"
+              usage="output" />
+
+    <property name="SelectedAssetId"
+              display-name-key="Selected Asset ID"
+              description-key="ID of the asset the user clicked"
+              of-type="SingleLine.Text"
+              usage="output" />
+
+    <property name="SelectedAssetType"
+              display-name-key="Selected Asset Type"
+              description-key="Type of the asset the user clicked"
+              of-type="SingleLine.Text"
+              usage="output" />
+
+    <property name="SelectedAssetStatus"
+              display-name-key="Selected Asset Status"
+              description-key="Status of the asset the user clicked"
+              of-type="SingleLine.Text"
+              usage="output" />
+
+    <resources>
+      <code path="index.ts" order="1" />
+    </resources>
+
+  </control>
+</manifest>
