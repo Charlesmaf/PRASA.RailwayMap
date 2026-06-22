@@ -35,6 +35,17 @@ export class RailwayMap
     private _addedLayerIds: string[] = [];
     private _addedSourceIds: string[] = [];
 
+    // ─── Data snapshots for change detection ──────────────────────────────────
+    // Power Apps reuses the same parameters object across updateView calls and
+    // mutates its values in place. Saving a reference to the previous parameters
+    // object therefore always compares a value against itself (same object, same
+    // property), making dataChanged always false and blocking re-renders.
+    // Storing the raw string values at the point of the last render is the only
+    // reliable way to detect actual data changes.
+    private _lastAlertsJSON = "";
+    private _lastStationsJSON = "";
+    private _lastAssetsJSON = "";
+
     // ─── PCF lifecycle ────────────────────────────────────────────────────────
 
     public init(
@@ -64,18 +75,24 @@ export class RailwayMap
     }
 
     public updateView(context: ComponentFramework.Context<IInputs>): void {
-        const prev = this._context?.parameters;
         this._context = context;
 
         if (!this._atlasLoaded || !this._map) return;
 
         const cur = context.parameters;
+        const curAlerts = cur.AlertsJSON?.raw ?? "";
+        const curStations = cur.StationsJSON?.raw ?? "";
+        const curAssets = cur.AssetsJSON?.raw ?? "";
+
         const dataChanged =
-            cur.StationsJSON?.raw !== prev?.StationsJSON?.raw ||
-            cur.AssetsJSON?.raw !== prev?.AssetsJSON?.raw ||
-            cur.AlertsJSON?.raw !== prev?.AlertsJSON?.raw;
+            curAlerts !== this._lastAlertsJSON ||
+            curStations !== this._lastStationsJSON ||
+            curAssets !== this._lastAssetsJSON;
 
         if (dataChanged && this._datasource) {
+            this._lastAlertsJSON = curAlerts;
+            this._lastStationsJSON = curStations;
+            this._lastAssetsJSON = curAssets;
             this._clearRendered();
             this._renderAll();
         }

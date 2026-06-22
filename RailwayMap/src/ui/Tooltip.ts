@@ -44,14 +44,14 @@ export class Tooltip {
         addRow("Latitude", props["lat"] !== undefined ? props["lat"] : undefined);
         addRow("Longitude", props["lon"] !== undefined ? props["lon"] : undefined);
         addRow("Category", props["stationCategory"]);
-        addRow("Section Length", props["sectionLength"] !== "" ? props["sectionLength"] + " km" : "");
+        // addRow("Section Length", props["sectionLength"] !== "" ? props["sectionLength"] + " km" : "");
         addRow("Passenger Volume (2024/2025)", props["passengerVolume"] !== "" ? Number(props["passengerVolume"]).toLocaleString() : "");
         addRow("Type", props["assetType"]);
         addRow("Asset ID", props["assetId"]);
         addRow("Severity", props["severity"]);
         addRow("Details", props["detail"] || props["description"]);
         addRow("Number of Lines", props["numberOfLines"]);
-        addRow("Region", props["region"]);
+        // addRow("Region", props["region"]);
         addRow("Station Status", formatStatus(props["status"]));
 
         this._el.innerHTML =

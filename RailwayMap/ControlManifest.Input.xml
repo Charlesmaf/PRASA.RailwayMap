@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="PRASA" constructor="RailwayMap" version="1.0.11"
+  <control namespace="PRASA" constructor="RailwayMap" version="1.0.23"
            display-name-key="PRASA Railway Map"
            description-key="Azure Maps railway corridor visualisation"
            control-type="standard">
@@ -48,6 +48,26 @@
               description-key="Name of station to zoom to"
               of-type="SingleLine.Text"
               usage="input" required="false" />
+
+  <property   name="SelectedRegion"
+              display-name-key="Selected Region"
+              description-key="Name of region to filter by"
+              of-type="SingleLine.Text" 
+              usage="input" required="false" />
+
+  <property   name="SelectedServiceLine"
+              display-name-key="Selected Service Line" 
+              description-key="Name of service line to filter by" 
+              of-type="SingleLine.Text" 
+              usage="input" 
+              required="false" />
+
+  <property   name="ServiceLinesJSON"
+              display-name-key="Service Lines JSON"
+              description-key="JSON array of service line objects"
+              of-type="SingleLine.Text"
+              usage="input"
+              required="false" />
 
     <!-- ── OUTPUT PROPERTIES (Map → Power Apps) ── -->
 

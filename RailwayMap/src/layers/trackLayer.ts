@@ -14,7 +14,7 @@ export function renderTrack(ctx: RenderContext): void {
         filter: ["==", ["get", "layerType"], "track"],
         strokeColor: "#1f6feb",
         strokeWidth: 16,
-        strokeOpacity: 0.12,
+        strokeOpacity: 0.9,
     }));
     addedLayerIds.push("track-glow");
 
@@ -29,8 +29,8 @@ export function renderTrack(ctx: RenderContext): void {
 
     map.layers.add(new atlas.layer.LineLayer(datasource, "track-centre", {
         filter: ["==", ["get", "layerType"], "track"],
-        strokeColor: "#1f6feb",
-        strokeWidth: 2.5,
+        strokeColor: "#00ff26",
+        strokeWidth: 3.5,
         strokeOpacity: 1,
     }));
     addedLayerIds.push("track-centre");
