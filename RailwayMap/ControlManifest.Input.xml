@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="PRASA" constructor="RailwayMap" version="1.0.23"
+  <control namespace="PRASA" constructor="RailwayMap" version="1.0.36"
            display-name-key="PRASA Railway Map"
            description-key="Azure Maps railway corridor visualisation"
            control-type="standard">
@@ -65,6 +65,12 @@
   <property   name="ServiceLinesJSON"
               display-name-key="Service Lines JSON"
               description-key="JSON array of service line objects"
+              of-type="SingleLine.Text"
+              usage="input"
+              required="false" />
+  <property name="FocusSection"
+              display-name-key="Focus Section"
+              description-key="Pipe-delimited FromStation|ToStation to zoom the map to that section. Set from varFocusSection in Power Apps."
               of-type="SingleLine.Text"
               usage="input"
               required="false" />

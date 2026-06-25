@@ -1,20 +1,23 @@
 import { AtlasAny, RenderContext } from "../types";
-import { TRACK_COORDS } from "../constants/trackCoords";
+import { findCorridor, CORRIDOR_REGISTRY } from "../constants/corridorRegistry";
 
-export function renderTrack(ctx: RenderContext): void {
+export function renderTrack(ctx: RenderContext, serviceLine = "Naledi - Johannesburg"): void {
     const atlas = (window as AtlasAny).atlas;
     const { map, datasource, addedLayerIds } = ctx;
 
+    const corridor = findCorridor(serviceLine) ?? CORRIDOR_REGISTRY[0];
+    const { coords, color } = corridor;
+
     datasource.add(new atlas.data.Feature(
-        new atlas.data.LineString(TRACK_COORDS),
+        new atlas.data.LineString(coords),
         { layerType: "track" }
     ));
 
     map.layers.add(new atlas.layer.LineLayer(datasource, "track-glow", {
         filter: ["==", ["get", "layerType"], "track"],
-        strokeColor: "#1f6feb",
+        strokeColor: color,
         strokeWidth: 16,
-        strokeOpacity: 0.9,
+        strokeOpacity: 0.12,
     }));
     addedLayerIds.push("track-glow");
 
@@ -29,8 +32,8 @@ export function renderTrack(ctx: RenderContext): void {
 
     map.layers.add(new atlas.layer.LineLayer(datasource, "track-centre", {
         filter: ["==", ["get", "layerType"], "track"],
-        strokeColor: "#00ff26",
-        strokeWidth: 3.5,
+        strokeColor: color,
+        strokeWidth: 2.5,
         strokeOpacity: 1,
     }));
     addedLayerIds.push("track-centre");
